@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React              from "react";
+import ReactDOM           from "react-dom";
+import {createStore}      from "redux";
+import {Provider}         from "react-redux";
+import App                from "./components/App";
+import reducer from './reducers/index';
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        Hello World!
-      </>
-    )
-  }
-}
+export const initialState = {
+  start: '',
+  end: '',
+  date: '',
+  passengersCount: ''
+};
+
+const store = createStore(reducer, initialState);
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('app')
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById("app")
 );
